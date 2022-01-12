@@ -2,7 +2,7 @@ feature "start a fight" do
   scenario "players enter their names" do
     player_1 = "Simba"
     player_2 = "Johnny"
-    message = "Welcome to your game #{player_1} and #{player_2}"
+    message = "#{player_1} vs #{player_2}"
 
     visit("/")
     fill_in "player_one", with: player_1

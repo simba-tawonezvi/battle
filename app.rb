@@ -7,7 +7,17 @@ class Battle < Sinatra::Base
   end
 
   get '/' do
-    'Hello Battle!'
+    erb(:index)
+  end
+
+  get '/test' do
+    erb(:test)
+  end
+
+  post '/names' do
+    @player_1 = params[:player_one]
+    @player_2 = params[:player_two]
+    erb(:play)
   end
 
 end

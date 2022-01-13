@@ -1,12 +1,9 @@
-require "sinatra"
-require "sinatra/base"
-require "sinatra/reloader"
-require_relative "lib/player"
+# require 'sinatra'
+require 'sinatra/base'
+require 'sinatra/reloader'
+require_relative 'lib/player'
 
 class Battle < Sinatra::Base
-
-  enable :sessions
-
   configure :development do
     register Sinatra::Reloader
   end
@@ -15,14 +12,10 @@ class Battle < Sinatra::Base
     erb(:index)
   end
 
-  get '/test' do
-    erb(:test)
-  end
-
   post '/names' do
     $player_1 = Player.new(params[:player_one])
     $player_2 = Player.new(params[:player_two])
-    redirect "/play"
+    redirect '/play'
   end
   
   get '/play' do
@@ -35,4 +28,5 @@ class Battle < Sinatra::Base
     erb(:attack)
   end
 
+  run! if app_file == $0
 end

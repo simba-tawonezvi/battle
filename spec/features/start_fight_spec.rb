@@ -1,14 +1,18 @@
 feature "start a fight" do
   scenario "players enter their names" do
-    player_1 = "Simba"
-    player_2 = "Johnny"
-    message = "#{player_1} vs #{player_2}"
+    sign_in_and_play
+    expect(page).to have_content("Simba vs Johnny")
+  end
 
-    visit("/")
-    fill_in "player_one", with: player_1
-    fill_in "player_two", with: player_2
-    click_button("Submit")
-    expect(page).to have_content(message)
+  scenario "player able to attack" do
+    sign_in_and_play
+    expect(page).to have_button("attack")
+  end
+
+  scenario "confirmation of a hit" do
+    sign_in_and_play
+    click_button "attack"
+    expect(page).to have_content("You attacked")
   end
 end
 
